@@ -1,27 +1,105 @@
-# RickAndMortyAngularGraphql
+# 🛸 Rick and Morty — Angular + GraphQL
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+> 🚧 **Proyecto en desarrollo**
+> Aplicación web construida con **Angular** y **GraphQL** para explorar, consultar y visualizar información del universo de *Rick and Morty*.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Sobre el proyecto
 
-## Code scaffolding
+Este proyecto nace como una práctica de **desarrollo frontend moderno**, enfocada en la integración de **Angular con GraphQL** y en la construcción de una aplicación organizada, escalable y fácil de mantener.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+A medida que avance el desarrollo se irán incorporando nuevas funcionalidades, mejoras visuales y optimizaciones.
 
-## Build
+### ✨ Características principales
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+* 🔎 **Consulta de información** mediante GraphQL.
+* 🧩 **Componentes reutilizables** desarrollados con Angular.
+* 📡 **Integración con APIs** mediante GraphQL.
+* 📱 **Interfaz adaptable** a diferentes dispositivos.
+* ⚡ **Gestión eficiente de datos**.
+* 🏗️ **Arquitectura escalable y organizada**.
+* 🎨 **Interfaz enfocada en una experiencia de usuario clara y atractiva**.
+* 🔄 **Desarrollo incremental**, con nuevas funcionalidades previstas.
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🛠️ Tecnologías utilizadas
 
-## Running end-to-end tests
+| Tecnología        | Uso                                   |
+| ----------------- | ------------------------------------- |
+| 🅰️ **Angular**   | Framework principal del proyecto      |
+| 🔷 **TypeScript** | Lenguaje de desarrollo                |
+| ◈ **GraphQL**     | Consulta y gestión de datos           |
+| 🌐 **HTML5**      | Estructura de la aplicación           |
+| 🎨 **CSS / SCSS** | Estilos e interfaz                    |
+| 🌿 **Git**        | Control de versiones                  |
+| 🐙 **GitHub**     | Gestión y publicación del repositorio |
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## 🎯 Objetivos
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* 🧠 Profundizar en el desarrollo con **Angular**.
+* 🔗 Integrar y consumir una **API GraphQL**.
+* 📊 Trabajar con consultas y datos dinámicos.
+* 🧩 Crear una arquitectura basada en **componentes reutilizables**.
+* 📐 Aplicar buenas prácticas de desarrollo frontend.
+* ⚡ Mejorar el rendimiento y la experiencia de usuario.
+* 🏗️ Mantener una estructura preparada para futuras funcionalidades.
+* 📚 Explorar herramientas y funcionalidades del ecosistema Angular.
+
+---
+
+## 🗺️ Roadmap
+
+El proyecto continuará evolucionando durante su desarrollo.
+
+* [x] 🏗️ Configuración inicial del proyecto
+* [x] 🅰️ Configuración de Angular
+* [ ] 🔗 Integración completa con GraphQL
+* [ ] 🔎 Implementación de consultas
+* [ ] 🧩 Desarrollo de componentes reutilizables
+* [ ] 🎨 Diseño y mejoras de interfaz
+* [ ] 📱 Adaptación responsive
+* [ ] ⚡ Optimización del rendimiento
+* [ ] 🧪 Implementación de pruebas
+* [ ] 🚀 Nuevas funcionalidades
+
+> 💡 *El roadmap se actualizará conforme avance el proyecto.*
+
+---
+
+## 📌 Estado del proyecto
+
+🟡 **En desarrollo**
+
+El proyecto se encuentra en evolución activa. La arquitectura, funcionalidades, interfaz y documentación podrán cambiar conforme se incorporen nuevas características y mejoras.
+
+---
+
+## 📂 Estructura del proyecto
+
+La estructura y organización del código se irán actualizando conforme el proyecto crezca, buscando mantener una arquitectura:
+
+* 🧩 Modular
+* ♻️ Reutilizable
+* 📖 Fácil de mantener
+* 📈 Escalable
+* 🧹 Organizada
+
+---
+
+## 🤝 Contribuciones
+
+Este proyecto está desarrollado principalmente como proyecto de aprendizaje y práctica de tecnologías frontend.
+
+Las sugerencias, mejoras e ideas son bienvenidas. 💡
+
+---
+
+## 👨‍💻 Desarrollo
+
+Proyecto desarrollado utilizando **Angular + TypeScript + GraphQL**.
+
+⭐ Si te resulta interesante el proyecto, puedes darle una estrella al repositorio.
