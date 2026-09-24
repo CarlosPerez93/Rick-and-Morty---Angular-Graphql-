@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../../shared/services/data.service';
+import { DataService } from '@shared/services/data.service';
 
 @Component({
   selector: 'app-characters-list',
-  templateUrl: './characters-list.component.html',
+  template: `
+    <section class="charater__list">
+      <app-characters-card
+        *ngFor="let character of characters$ | async"
+        [character]="character"
+      >
+      </app-characters-card>
+    </section>
+  `,
   styleUrls: ['./characters-list.component.css'],
 })
-export class CharactersListComponent implements OnInit {
-  chatacters$ = this.DataService.characters$;
+export class CharactersListComponent {
+  characters$ = this.DataService.characters$;
 
   constructor(private DataService: DataService) {}
-
-  ngOnInit(): void {}
 }

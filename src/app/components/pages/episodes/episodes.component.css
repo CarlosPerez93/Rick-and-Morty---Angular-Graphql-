@@ -1,0 +1,9 @@
+.container {
+  container: 50%;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    container: 90%;
+  }
+}
