@@ -1,42 +1,11 @@
+import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
-import { BehaviorSubject, take, tap } from 'rxjs';
-import { Character, DataResponse, Episode } from '../interfaces/data.interface';
-import { LocalStorageService } from './localStorage.service';
+import { BehaviorSubject, pluck, take, tap, withLatestFrom } from 'rxjs';
 
-const QUERY = gql`
-  {
-    episodes {
-      results {
-        id
-        name
-        episode
-      }
-    }
-    characters {
-      results {
-        id
-        name
-        status
-        species
-        gender
-        origin {
-          name
-        }
-        location {
-          name
-        }
-        image
-      }
-    }
-    location(id: 1) {
-      id
-    }
-    episodesByIds(ids: [1, 2]) {
-      id
-    }
-  }
-`;
+import { QUERY, QUERY_BY_PAGE } from '../utils/querys.util';
+import { LocalStorageService } from './localStorage.service';
+import { Character, DataResponse, Episode } from '../interfaces/data.interface';
+import { query } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root',
@@ -53,6 +22,20 @@ export class DataService {
     private localStorage: LocalStorageService,
   ) {
     this.getDataApi();
+  }
+
+  getCharactersByPage(pageNum: number): any {
+    this.apollo
+      .watchQuery<any>({ query: QUERY_BY_PAGE(pageNum) })
+      .valueChanges.pipe(
+        take(1),
+        pluck('data', 'characters'),
+        withLatestFrom(this.characters$),
+        tap(([apiRepsonse, characters]) => {
+          this.parseCharacteData([...characters, ...apiRepsonse.results]);
+        }),
+      )
+      .subscribe();
   }
 
   private getDataApi(): void {
