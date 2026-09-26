@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Character } from '../interfaces/data.interface';
+import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+
+import { Character } from '../interfaces/data.interface';
 
 const MY_FAVORITES: string = 'myFavorites';
 

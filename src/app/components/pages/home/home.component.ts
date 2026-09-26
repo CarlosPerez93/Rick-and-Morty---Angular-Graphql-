@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+
 import { LocalStorageService } from '@app/shared/services/localStorage.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
+  template: `
+    <section class="character__list">
+      <app-characters-card
+        *ngFor="let character of charactersFav$ | async"
+        [character]="character"
+      ></app-characters-card>
+    </section>
+  `,
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {

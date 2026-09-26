@@ -1,7 +1,8 @@
-import { Component, HostListener, Inject } from '@angular/core';
-import { DataService } from '@shared/services/data.service';
-import { LocalStorageService } from '../../../../shared/services/localStorage.service';
 import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, Inject } from '@angular/core';
+
+import { DataService } from '@shared/services/data.service';
+import { LocalStorageService } from '@shared/services/localStorage.service';
 
 @Component({
   selector: 'app-characters-list',

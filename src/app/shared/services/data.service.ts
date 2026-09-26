@@ -1,11 +1,11 @@
 import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
+import { query } from '@angular/animations';
 import { BehaviorSubject, pluck, take, tap, withLatestFrom } from 'rxjs';
 
 import { QUERY, QUERY_BY_PAGE } from '../utils/querys.util';
 import { LocalStorageService } from './localStorage.service';
 import { Character, DataResponse, Episode } from '../interfaces/data.interface';
-import { query } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root',
