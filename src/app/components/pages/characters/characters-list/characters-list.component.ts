@@ -22,7 +22,7 @@ import { DOCUMENT } from '@angular/common';
 export class CharactersListComponent {
   characters$ = this.DataService.characters$;
   showButton = false;
-
+  pageNum = 1;
   private scrollHeight = 500;
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -42,6 +42,7 @@ export class CharactersListComponent {
   }
 
   onScrollDown(): void {
-    this.DataService.getCharactersByPage(2);
+    this.pageNum++;
+    this.DataService.getCharactersByPage(this.pageNum);
   }
 }
