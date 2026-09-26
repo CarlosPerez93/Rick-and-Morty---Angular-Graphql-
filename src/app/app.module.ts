@@ -5,20 +5,22 @@ import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './components/pages/home/home.component';
+
 import { HeaderModule } from './shared/components/header/header.module';
-import { CharactersCardComponent } from './components/pages/characters/characters-card/characters-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     GraphQLModule,
     HttpClientModule,
     AppRoutingModule,
     HeaderModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { BehaviorSubject, take, tap } from 'rxjs';
 import { Character, DataResponse, Episode } from '../interfaces/data.interface';
+import { LocalStorageService } from './localStorage.service';
 
 const QUERY = gql`
   {
@@ -47,7 +48,10 @@ export class DataService {
   episodes$ = this.episodesSubject.asObservable();
   characters$ = this.charactersSubject.asObservable();
 
-  constructor(private apollo: Apollo) {
+  constructor(
+    private apollo: Apollo,
+    private localStorage: LocalStorageService,
+  ) {
     this.getDataApi();
   }
 
@@ -62,8 +66,21 @@ export class DataService {
           const { characters, episodes } = data;
           this.charactersSubject.next(characters.results);
           this.episodesSubject.next(episodes.results);
+
+          this.parseCharacteData(characters.results);
         }),
       )
       .subscribe();
   }
+
+  private parseCharacteData = (character: Character[]): void => {
+    const currentFavs = this.localStorage.getFavoriteCharacters();
+    const newData = character.map((character) => {
+      const found = !!currentFavs.find(
+        (fav: Character) => fav.id === character.id,
+      );
+      return { ...character, isFavorite: found };
+    });
+    this.charactersSubject.next(newData);
+  };
 }
