@@ -1,25 +1,34 @@
 # 🛸 Rick and Morty - Angular + GraphQL
 
-Aplicación Angular para consultar personajes y episodios de Rick and Morty a través de la API GraphQL oficial. El proyecto incluye renderizado del lado del servidor (SSR) y prerenderizado. 🚀
+Aplicación Angular para explorar personajes y episodios de Rick and Morty a través de la API GraphQL oficial. Incluye búsqueda y filtros reactivos, paneles laterales para detalles y favoritos, además de configuración para renderizado del lado del servidor (SSR) y prerenderizado. 🚀
 
 ## ✨ Funcionalidades
 
-- 🔎 Listado de personajes con carga de páginas adicionales al desplazarse.
-- 🧩 Tarjetas reutilizables con imagen e información básica de cada personaje.
-- ⭐ Gestión de personajes favoritos mediante almacenamiento local.
-- 📺 Vista de episodios.
+- 🔎 Directorio de personajes con búsqueda por nombre, filtros por estado y carga de páginas adicionales al desplazarse.
+- 🧩 Tarjetas reutilizables con imagen, estado, especie, género y origen.
+- ⌨️ Paleta de búsqueda con atajo `Ctrl + K` / `Cmd + K` y resultados conectados a GraphQL.
+- 🪟 Drawer de detalles de personaje con información de origen y ubicación.
+- ⭐ Favoritos persistidos en `localStorage`, con una vista drawer accesible desde la navegación.
+- 📺 Archivo de episodios agrupado por temporada, con búsqueda por título/código y filtros reactivos.
+- 📱 Interfaz minimalista adaptable a pantallas móviles.
 - 🧭 Navegación con módulos cargados de forma diferida y página para rutas no encontradas.
-- ⚡ Configuración de SSR y prerenderizado para la ruta principal.
-
-La ruta de detalle de personaje está creada, pero su componente todavía no muestra información. La pantalla genérica de personajes también conserva contenido de ejemplo y no forma parte del flujo principal. 🚧
+- ⚡ Configuración de SSR y prerenderizado para la aplicación.
 
 ## 🛠️ Tecnologías
 
 - 🅰️ Angular 16 y TypeScript
-- ◈ Apollo Angular y GraphQL
-- 🔄 RxJS
+- ◈ Apollo Angular y GraphQL para consultar los personajes y episodios.
+- 🔄 RxJS para estado observable, búsqueda reactiva y filtros.
+- 🎨 HTML5 y CSS3 nativo para componentes, animaciones y diseño responsive.
+- 💾 `localStorage` para persistir favoritos en el navegador.
 - 🌐 Express y Angular Universal para SSR
-- 🧪 Karma y Jasmine para pruebas
+
+## 🤖 Diseño y herramientas de IA
+
+- 🧵 **Stitch** se utilizó para generar el concepto visual minimalista “Rick and Morty Redesign” y consultar sus artefactos de diseño mediante el MCP de Stitch disponible en VS Code.
+- 🤝 **GitHub Copilot en VS Code** se utilizó como asistente de desarrollo para adaptar el diseño al proyecto Angular, refactorizar las vistas e integrar los controles con los observables y consultas existentes.
+- 🧩 Los artefactos HTML/CSS de diseño se mapearon a templates y hojas de estilo locales de Angular; los tokens visuales compartidos se incorporaron a los estilos globales.
+- 🛠️ Las herramientas de IA se usaron durante el diseño y el desarrollo. No son dependencias de ejecución y la aplicación no necesita servicios de IA para funcionar.
 
 ## 📋 Requisitos
 
@@ -49,22 +58,25 @@ La aplicación queda disponible en `http://localhost:4200`.
 
 - [x] 🏗️ Configuración inicial de Angular y estructura modular.
 - [x] 🔗 Integración con la API GraphQL mediante Apollo.
-- [x] 🔎 Consultas de personajes y episodios.
-- [x] ⭐ Listado paginado de personajes y favoritos persistidos localmente.
-- [x] 🧩 Componentes reutilizables para las tarjetas de personajes.
+- [x] 🔎 Búsqueda y filtros de personajes con resultados conectados a GraphQL.
+- [x] ⌨️ Paleta de búsqueda accesible con `Ctrl + K` / `Cmd + K`.
+- [x] 🪟 Drawer de detalles de personaje y drawer de favoritos.
+- [x] ⭐ Favoritos reactivos persistidos localmente.
+- [x] 📺 Archivo de episodios con filtros por temporada y búsqueda.
+- [x] 🎨 Rediseño minimalista responsive con CSS nativo y animaciones.
 - [x] 🌐 Configuración de compilación SSR y prerenderizado.
-- [x] ✅ Verificación de `npm run build:ssr` y `npm run prerender`.
-- [ ] 📄 Implementar y probar el contenido de la vista de detalle de personaje.
-- [ ] 🧹 Completar o retirar la pantalla de personajes que actualmente muestra contenido de ejemplo.
-- [ ] 🧪 Ampliar las pruebas para cubrir consultas, paginación, favoritos y estados de error/vacío.
-- [ ] 📱 Validar la interfaz responsive en distintos tamaños de pantalla.
-- [ ] ⚠️ Revisar estados de carga y errores de la API en las vistas.
-
-Hay archivos de pruebas unitarias en el proyecto, pero eso no implica que las funcionalidades estén cubiertas de forma suficiente. El estado de ejecución de `npm test` no está documentado todavía.
+- [x] ✅ Build de producción con `npm run build`.
+- [x] 🧪 Pruebas enfocadas para la vista de favoritos y navegación.
+- [ ] 🧪 Ampliar la cobertura de pruebas para consultas, paginación y estados de error.
+- [ ] ⚠️ Revisar y unificar el manejo de errores de GraphQL y `localStorage`.
 
 ## 📂 Estructura
 
 - `src/app/components/pages/`: vistas de personajes, episodios, favoritos, información y rutas no encontradas.
+- `src/app/components/pages/characters/`: tarjetas, listado, ruta de detalle y drawer de detalles.
+- `src/app/components/pages/home/`: drawer de personajes favoritos.
+- `src/app/components/pages/episodes/`: archivo y filtros de episodios.
 - `src/app/shared/`: componentes compartidos, servicios, interfaces y utilidades.
 - `src/app/graphql.module.ts`: configuración del cliente Apollo.
+- `src/styles.css`: tokens de diseño y estilos globales.
 - `server.ts` y `src/main.server.ts`: entrada del servidor SSR.
