@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/rick-and-morty---angular-graphql-",
+            "outputPath": "dist/Rick-and-Morty---Angular-Graphql-/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -76,6 +76,60 @@
             "styles": ["src/styles.css"],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/Rick-and-Morty---Angular-Graphql-/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "Rick-and-Morty---Angular-Graphql-:build:development",
+              "serverTarget": "Rick-and-Morty---Angular-Graphql-:server:development"
+            },
+            "production": {
+              "browserTarget": "Rick-and-Morty---Angular-Graphql-:build:production",
+              "serverTarget": "Rick-and-Morty---Angular-Graphql-:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Rick-and-Morty---Angular-Graphql-:build:production",
+              "serverTarget": "Rick-and-Morty---Angular-Graphql-:server:production"
+            },
+            "development": {
+              "browserTarget": "Rick-and-Morty---Angular-Graphql-:build:development",
+              "serverTarget": "Rick-and-Morty---Angular-Graphql-:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { CharactersListComponent } from './characters-list.component';
 
@@ -12,7 +12,7 @@ import { CharactersCardModule } from '../characters-card/characters-card.module'
   imports: [
     CommonModule,
     CharactersCardModule,
-    InfiniteScrollDirective,
+    InfiniteScrollModule,
     CharactersListRoutingModule,
   ],
   exports: [CharactersListComponent],
