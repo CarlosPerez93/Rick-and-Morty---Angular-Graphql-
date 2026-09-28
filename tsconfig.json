@@ -3,7 +3,6 @@
   "compilerOptions": {
     "baseUrl": "./",
     "rootDir": "./src",
-
     "paths": {
       "@app/*": ["src/app/*"],
       "@shared/*": ["src/app/shared/*"],

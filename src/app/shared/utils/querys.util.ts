@@ -47,3 +47,20 @@ export const QUERY_BY_PAGE = (pageNum: number) => gql`
        }
   }
 }`;
+
+export const QUERY_BY_NAME = (name: string) => gql`
+  {
+    characters(filter: { name: ${JSON.stringify(name)} }) {
+      info {
+        count
+      }
+      results {
+        id
+        name
+        status
+        species
+        gender
+        image
+      }
+    }
+  }`;

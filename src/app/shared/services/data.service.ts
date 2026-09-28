@@ -1,9 +1,17 @@
 import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { query } from '@angular/animations';
-import { BehaviorSubject, pluck, take, tap, withLatestFrom } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  of,
+  pluck,
+  take,
+  tap,
+  withLatestFrom,
+} from 'rxjs';
 
-import { QUERY, QUERY_BY_PAGE } from '../utils/querys.util';
+import { QUERY, QUERY_BY_PAGE, QUERY_BY_NAME } from '../utils/querys.util';
 import { LocalStorageService } from './localStorage.service';
 import { Character, DataResponse, Episode } from '../interfaces/data.interface';
 
@@ -38,7 +46,7 @@ export class DataService {
       .subscribe();
   }
 
-  private getDataApi(): void {
+  getDataApi(): void {
     this.apollo
       .watchQuery<DataResponse>({
         query: QUERY,
@@ -66,4 +74,25 @@ export class DataService {
     });
     this.charactersSubject.next(newData);
   };
+
+  filterDAta(valueToSearch: string): void {
+    this.apollo
+      .watchQuery<any>({
+        query: QUERY_BY_NAME(valueToSearch),
+        variables: {
+          name: valueToSearch,
+        },
+      })
+      .valueChanges.pipe(
+        take(1),
+        pluck('data', 'characters'),
+        tap((apiResponse) => this.parseCharacteData([...apiResponse.results])),
+        catchError((error) => {
+          console.log(error.message);
+          this.charactersSubject.next(null!);
+          return of(error);
+        }),
+      )
+      .subscribe();
+  }
 }
