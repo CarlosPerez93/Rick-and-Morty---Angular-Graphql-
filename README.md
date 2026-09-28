@@ -1,105 +1,70 @@
-# 🛸 Rick and Morty — Angular + GraphQL
+# 🛸 Rick and Morty - Angular + GraphQL
 
-> 🚧 **Proyecto en desarrollo**
-> Aplicación web construida con **Angular** y **GraphQL** para explorar, consultar y visualizar información del universo de *Rick and Morty*.
+Aplicación Angular para consultar personajes y episodios de Rick and Morty a través de la API GraphQL oficial. El proyecto incluye renderizado del lado del servidor (SSR) y prerenderizado. 🚀
 
----
+## ✨ Funcionalidades
 
-## 🚀 Sobre el proyecto
+- 🔎 Listado de personajes con carga de páginas adicionales al desplazarse.
+- 🧩 Tarjetas reutilizables con imagen e información básica de cada personaje.
+- ⭐ Gestión de personajes favoritos mediante almacenamiento local.
+- 📺 Vista de episodios.
+- 🧭 Navegación con módulos cargados de forma diferida y página para rutas no encontradas.
+- ⚡ Configuración de SSR y prerenderizado para la ruta principal.
 
-Este proyecto nace como una práctica de **desarrollo frontend moderno**, enfocada en la integración de **Angular con GraphQL** y en la construcción de una aplicación organizada, escalable y fácil de mantener.
+La ruta de detalle de personaje está creada, pero su componente todavía no muestra información. La pantalla genérica de personajes también conserva contenido de ejemplo y no forma parte del flujo principal. 🚧
 
-A medida que avance el desarrollo se irán incorporando nuevas funcionalidades, mejoras visuales y optimizaciones.
+## 🛠️ Tecnologías
 
-### ✨ Características principales
+- 🅰️ Angular 16 y TypeScript
+- ◈ Apollo Angular y GraphQL
+- 🔄 RxJS
+- 🌐 Express y Angular Universal para SSR
+- 🧪 Karma y Jasmine para pruebas
 
-* 🔎 **Consulta de información** mediante GraphQL.
-* 🧩 **Componentes reutilizables** desarrollados con Angular.
-* 📡 **Integración con APIs** mediante GraphQL.
-* 📱 **Interfaz adaptable** a diferentes dispositivos.
-* ⚡ **Gestión eficiente de datos**.
-* 🏗️ **Arquitectura escalable y organizada**.
-* 🎨 **Interfaz enfocada en una experiencia de usuario clara y atractiva**.
-* 🔄 **Desarrollo incremental**, con nuevas funcionalidades previstas.
+## 📋 Requisitos
 
----
+- Node.js y npm compatibles con Angular 16.
 
-## 🛠️ Tecnologías utilizadas
+## 🚀 Instalación y desarrollo
 
-| Tecnología        | Uso                                   |
-| ----------------- | ------------------------------------- |
-| 🅰️ **Angular**   | Framework principal del proyecto      |
-| 🔷 **TypeScript** | Lenguaje de desarrollo                |
-| ◈ **GraphQL**     | Consulta y gestión de datos           |
-| 🌐 **HTML5**      | Estructura de la aplicación           |
-| 🎨 **CSS / SCSS** | Estilos e interfaz                    |
-| 🌿 **Git**        | Control de versiones                  |
-| 🐙 **GitHub**     | Gestión y publicación del repositorio |
+```bash
+npm install
+npm start
+```
 
----
+La aplicación queda disponible en `http://localhost:4200`.
 
-## 🎯 Objetivos
+## ⚙️ Comandos
 
-* 🧠 Profundizar en el desarrollo con **Angular**.
-* 🔗 Integrar y consumir una **API GraphQL**.
-* 📊 Trabajar con consultas y datos dinámicos.
-* 🧩 Crear una arquitectura basada en **componentes reutilizables**.
-* 📐 Aplicar buenas prácticas de desarrollo frontend.
-* ⚡ Mejorar el rendimiento y la experiencia de usuario.
-* 🏗️ Mantener una estructura preparada para futuras funcionalidades.
-* 📚 Explorar herramientas y funcionalidades del ecosistema Angular.
+| Comando             | Descripción                                           |
+| ------------------- | ----------------------------------------------------- |
+| `npm start`         | Inicia el servidor de desarrollo.                     |
+| `npm run build`     | Compila la aplicación para el navegador.              |
+| `npm test`          | Ejecuta las pruebas unitarias con Karma y Jasmine.    |
+| `npm run build:ssr` | Compila la aplicación de navegador y el servidor SSR. |
+| `npm run serve:ssr` | Inicia el servidor SSR compilado.                     |
+| `npm run prerender` | Genera HTML estático para la ruta configurada.        |
 
----
+## 🗺️ Estado y próximos pasos
 
-## 🗺️ Roadmap
+- [x] 🏗️ Configuración inicial de Angular y estructura modular.
+- [x] 🔗 Integración con la API GraphQL mediante Apollo.
+- [x] 🔎 Consultas de personajes y episodios.
+- [x] ⭐ Listado paginado de personajes y favoritos persistidos localmente.
+- [x] 🧩 Componentes reutilizables para las tarjetas de personajes.
+- [x] 🌐 Configuración de compilación SSR y prerenderizado.
+- [x] ✅ Verificación de `npm run build:ssr` y `npm run prerender`.
+- [ ] 📄 Implementar y probar el contenido de la vista de detalle de personaje.
+- [ ] 🧹 Completar o retirar la pantalla de personajes que actualmente muestra contenido de ejemplo.
+- [ ] 🧪 Ampliar las pruebas para cubrir consultas, paginación, favoritos y estados de error/vacío.
+- [ ] 📱 Validar la interfaz responsive en distintos tamaños de pantalla.
+- [ ] ⚠️ Revisar estados de carga y errores de la API en las vistas.
 
-El proyecto continuará evolucionando durante su desarrollo.
+Hay archivos de pruebas unitarias en el proyecto, pero eso no implica que las funcionalidades estén cubiertas de forma suficiente. El estado de ejecución de `npm test` no está documentado todavía.
 
-* [x] 🏗️ Configuración inicial del proyecto
-* [x] 🅰️ Configuración de Angular
-* [ ] 🔗 Integración completa con GraphQL
-* [ ] 🔎 Implementación de consultas
-* [ ] 🧩 Desarrollo de componentes reutilizables
-* [ ] 🎨 Diseño y mejoras de interfaz
-* [ ] 📱 Adaptación responsive
-* [ ] ⚡ Optimización del rendimiento
-* [ ] 🧪 Implementación de pruebas
-* [ ] 🚀 Nuevas funcionalidades
+## 📂 Estructura
 
-> 💡 *El roadmap se actualizará conforme avance el proyecto.*
-
----
-
-## 📌 Estado del proyecto
-
-🟡 **En desarrollo**
-
-El proyecto se encuentra en evolución activa. La arquitectura, funcionalidades, interfaz y documentación podrán cambiar conforme se incorporen nuevas características y mejoras.
-
----
-
-## 📂 Estructura del proyecto
-
-La estructura y organización del código se irán actualizando conforme el proyecto crezca, buscando mantener una arquitectura:
-
-* 🧩 Modular
-* ♻️ Reutilizable
-* 📖 Fácil de mantener
-* 📈 Escalable
-* 🧹 Organizada
-
----
-
-## 🤝 Contribuciones
-
-Este proyecto está desarrollado principalmente como proyecto de aprendizaje y práctica de tecnologías frontend.
-
-Las sugerencias, mejoras e ideas son bienvenidas. 💡
-
----
-
-## 👨‍💻 Desarrollo
-
-Proyecto desarrollado utilizando **Angular + TypeScript + GraphQL**.
-
-⭐ Si te resulta interesante el proyecto, puedes darle una estrella al repositorio.
+- `src/app/components/pages/`: vistas de personajes, episodios, favoritos, información y rutas no encontradas.
+- `src/app/shared/`: componentes compartidos, servicios, interfaces y utilidades.
+- `src/app/graphql.module.ts`: configuración del cliente Apollo.
+- `server.ts` y `src/main.server.ts`: entrada del servidor SSR.
