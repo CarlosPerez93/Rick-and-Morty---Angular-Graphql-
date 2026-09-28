@@ -1,9 +1,9 @@
 import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
-import { query } from '@angular/animations';
 import {
   BehaviorSubject,
   catchError,
+  finalize,
   of,
   pluck,
   take,
@@ -21,9 +21,11 @@ import { Character, DataResponse, Episode } from '../interfaces/data.interface';
 export class DataService {
   private episodesSubject = new BehaviorSubject<Episode[]>([]);
   private charactersSubject = new BehaviorSubject<Character[]>([]);
+  private loadingSubject = new BehaviorSubject<boolean>(true);
 
   episodes$ = this.episodesSubject.asObservable();
   characters$ = this.charactersSubject.asObservable();
+  loading$ = this.loadingSubject.asObservable();
 
   constructor(
     private apollo: Apollo,
@@ -33,6 +35,7 @@ export class DataService {
   }
 
   getCharactersByPage(pageNum: number): any {
+    this.loadingSubject.next(true);
     this.apollo
       .watchQuery<any>({ query: QUERY_BY_PAGE(pageNum) })
       .valueChanges.pipe(
@@ -42,11 +45,13 @@ export class DataService {
         tap(([apiRepsonse, characters]) => {
           this.parseCharacteData([...characters, ...apiRepsonse.results]);
         }),
+        finalize(() => this.loadingSubject.next(false)),
       )
       .subscribe();
   }
 
   getDataApi(): void {
+    this.loadingSubject.next(true);
     this.apollo
       .watchQuery<DataResponse>({
         query: QUERY,
@@ -60,6 +65,7 @@ export class DataService {
 
           this.parseCharacteData(characters.results);
         }),
+        finalize(() => this.loadingSubject.next(false)),
       )
       .subscribe();
   }
@@ -76,6 +82,7 @@ export class DataService {
   };
 
   filterDAta(valueToSearch: string): void {
+    this.loadingSubject.next(true);
     this.apollo
       .watchQuery<any>({
         query: QUERY_BY_NAME(valueToSearch),
@@ -89,9 +96,10 @@ export class DataService {
         tap((apiResponse) => this.parseCharacteData([...apiResponse.results])),
         catchError((error) => {
           console.log(error.message);
-          this.charactersSubject.next(null!);
+          this.charactersSubject.next([]);
           return of(error);
         }),
+        finalize(() => this.loadingSubject.next(false)),
       )
       .subscribe();
   }

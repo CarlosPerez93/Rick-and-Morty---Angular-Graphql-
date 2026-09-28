@@ -7,6 +7,7 @@ import { CharactersListComponent } from './characters-list.component';
 import { CharactersListRoutingModule } from './characters-list-routing.module';
 import { CharactersCardModule } from '../characters-card/characters-card.module';
 import { SearchModule } from '@app/shared/components/search/search.module';
+import { CharactersDetailModalModule } from '../characters-detail-modal/characters-detail-modal.module';
 
 @NgModule({
   declarations: [CharactersListComponent],
@@ -16,6 +17,7 @@ import { SearchModule } from '@app/shared/components/search/search.module';
     InfiniteScrollModule,
     CharactersListRoutingModule,
     SearchModule,
+    CharactersDetailModalModule,
   ],
   exports: [CharactersListComponent],
 })

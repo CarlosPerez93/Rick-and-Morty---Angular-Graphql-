@@ -43,6 +43,12 @@ export const QUERY_BY_PAGE = (pageNum: number) => gql`
         status
         species
         gender
+        origin {
+          name
+        }
+        location {
+          name
+        }
         image
        }
   }
@@ -60,6 +66,12 @@ export const QUERY_BY_NAME = (name: string) => gql`
         status
         species
         gender
+        origin {
+          name
+        }
+        location {
+          name
+        }
         image
       }
     }

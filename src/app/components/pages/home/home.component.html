@@ -1,0 +1,58 @@
+<div class="favorites-backdrop" (click)="close()">
+  <aside
+    class="favorites-drawer"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="favorites-title"
+    (click)="$event.stopPropagation()"
+  >
+    <header class="favorites-drawer__header">
+      <div>
+        <span class="favorites-drawer__eyebrow">Multiverse Explorer</span>
+        <h1 id="favorites-title">Favorite characters</h1>
+        <p>Your saved characters from across the multiverse.</p>
+      </div>
+      <button
+        class="favorites-drawer__close"
+        type="button"
+        aria-label="Close favorites"
+        (click)="close()"
+      >
+        ×
+      </button>
+    </header>
+
+    <ng-container *ngIf="charactersFav$ | async as characters">
+      <div class="favorites-drawer__count">
+        {{ characters.length }} {{ characters.length === 1 ? "favorite" : "favorites" }}
+      </div>
+
+      <section
+        class="favorites-drawer__list"
+        aria-label="Favorite characters"
+        *ngIf="characters.length; else emptyFavorites"
+      >
+        <app-characters-card
+          *ngFor="let character of characters"
+          [character]="character"
+          (viewDetails)="openDetails($event)"
+        ></app-characters-card>
+      </section>
+
+      <ng-template #emptyFavorites>
+        <div class="favorites-empty">
+          <span class="favorites-empty__icon" aria-hidden="true">♡</span>
+          <h2>No favorites yet</h2>
+          <p>Save a character from the directory and they will appear here.</p>
+          <button type="button" (click)="close()">Explore characters</button>
+        </div>
+      </ng-template>
+    </ng-container>
+  </aside>
+</div>
+
+<app-character-detail-modal
+  *ngIf="selectedCharacter as character"
+  [character]="character"
+  (close)="closeDetails()"
+></app-character-detail-modal>

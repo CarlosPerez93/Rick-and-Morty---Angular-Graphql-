@@ -1,43 +1,59 @@
-<article class="card">
-  <a [routerLink]="['/characters-details', character.id]" class="card__link">
-    <figure class="img__character">
-      <img
-        rel="preload"
-        as="image"
-        width="300"
-        height="300"
-        [src]="character.image"
-        [alt]="character.name"
-      />
-    </figure>
-  </a>
-  <div class="card__details">
-    <figure class="card_favorite">
-      <img
-        class="svg"
+<article class="character-card">
+  <button
+    class="character-card__image-button"
+    type="button"
+    (click)="viewDetails.emit(character)"
+    [attr.aria-label]="'View details for ' + character.name"
+  >
+    <img
+      class="character-card__image"
+      [src]="character.image"
+      [alt]="character.name"
+    />
+  </button>
+  <div class="character-card__content">
+    <div class="character-card__heading">
+      <div>
+        <span class="character-card__species">{{ character.species }}</span>
+        <button
+          class="character-card__name"
+          type="button"
+          (click)="viewDetails.emit(character)"
+        >
+          {{ character.name }}
+        </button>
+      </div>
+      <button
+        class="favorite-button"
+        type="button"
         (click)="toggleFavorite()"
-        rel="preload"
-        as="image"
-        width="30"
-        height="30"
-        src="assets/imgs/{{ getIcon() }}"
-        [alt]="character.name"
-      />
-    </figure>
-    <h3>{{ character.name }}</h3>
-    <ul class="card__list">
-      <li>
-        <label class="table__label">Status:</label>
-        {{ character.status }}
-      </li>
-      <li>
-        <label for="" class="table__label">Species:</label>
-        {{ character.species }}
-      </li>
-      <li>
-        <label for="" class="table__label">Gender:</label>
-        {{ character.gender }}
-      </li>
-    </ul>
+        [attr.aria-label]="
+          character.isFavorite ? 'Remove favorite' : 'Add favorite'
+        "
+      >
+        <img
+          [src]="'assets/imgs/' + getIcon()"
+          [alt]="character.isFavorite ? 'Favorite' : 'Not favorite'"
+        />
+      </button>
+    </div>
+    <div class="character-card__status">
+      <span
+        class="status-dot"
+        [class.status-dot--alive]="character.status === 'Alive'"
+        [class.status-dot--dead]="character.status === 'Dead'"
+      ></span>
+      <span>{{ character.status }}</span>
+    </div>
+    <dl class="character-card__facts">
+      <div>
+        <dt>Gender</dt>
+        <dd>{{ character.gender }}</dd>
+      </div>
+      <div>
+        <dt>Origin</dt>
+        <dd>{{ character.origin?.name || "Unknown" }}</dd>
+      </div>
+    </dl>
   </div>
 </article>

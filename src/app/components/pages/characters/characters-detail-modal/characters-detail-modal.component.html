@@ -1,0 +1,54 @@
+<div class="detail-backdrop" (click)="close.emit()">
+  <aside
+    class="detail-drawer"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="character.name + ' details'"
+    (click)="$event.stopPropagation()"
+  >
+    <button
+      class="detail-drawer__close"
+      type="button"
+      (click)="close.emit()"
+      aria-label="Close details"
+    >
+      ×
+    </button>
+    <img
+      class="detail-drawer__image"
+      [src]="character.image"
+      [alt]="character.name"
+    />
+    <span class="detail-drawer__eyebrow"
+      >Character record / #{{ character.id }}</span
+    >
+    <h2>{{ character.name }}</h2>
+    <div class="detail-drawer__status">
+      <span
+        class="status-dot"
+        [class.status-dot--alive]="character.status === 'Alive'"
+        [class.status-dot--dead]="character.status === 'Dead'"
+      ></span>
+      {{ character.status }}
+    </div>
+    <dl class="detail-drawer__facts">
+      <div>
+        <dt>Species</dt>
+        <dd>{{ character.species }}</dd>
+      </div>
+      <div>
+        <dt>Gender</dt>
+        <dd>{{ character.gender }}</dd>
+      </div>
+      <div>
+        <dt>Origin</dt>
+        <dd>{{ character.origin?.name || "Unknown" }}</dd>
+      </div>
+      <div>
+        <dt>Current location</dt>
+        <dd>{{ character.location?.name || "Unknown" }}</dd>
+      </div>
+    </dl>
+    <div class="detail-drawer__footer">GraphQL character record</div>
+  </aside>
+</div>

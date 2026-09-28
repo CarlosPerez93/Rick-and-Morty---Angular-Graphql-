@@ -1,0 +1,98 @@
+<main class="explorer" infinite-scroll (scrolled)="onScrollDown()">
+  <header class="explorer__header">
+    <div>
+      <span class="eyebrow">Multiverse Explorer / 01</span>
+      <h1 class="explorer__title">Character directory</h1>
+      <p class="explorer__description">
+        Explore the known multiverse. Search specimens and narrow the list by
+        current status.
+      </p>
+    </div>
+    <button class="search-trigger" type="button" (click)="isSearchOpen = true">
+      <span>Search characters</span>
+      <kbd>⌘ K / Ctrl K</kbd>
+    </button>
+  </header>
+
+  <section class="toolbar" aria-label="Character filters">
+    <div class="filters" role="group" aria-label="Filter by status">
+      <button
+        *ngFor="let status of ['All', 'Alive', 'Dead', 'Unknown']"
+        class="filter-button"
+        [class.is-active]="(filterStatus$ | async) === status"
+        type="button"
+        (click)="setStatusFilter(status)"
+      >
+        <span
+          *ngIf="status !== 'All'"
+          class="filter-dot"
+          [class.filter-dot--alive]="status === 'Alive'"
+          [class.filter-dot--dead]="status === 'Dead'"
+          [class.filter-dot--unknown]="status === 'Unknown'"
+        ></span>
+        {{ status }}
+      </button>
+    </div>
+    <span
+      class="result-count"
+      *ngIf="filteredCharacters$ | async as characters"
+    >
+      {{ characters.length }} specimens loaded
+    </span>
+  </section>
+
+  <section class="character-grid" aria-label="Characters">
+    <ng-container *ngIf="loading$ | async; else loadedCharacters">
+      <div
+        class="skeleton-card"
+        *ngFor="let skeleton of skeletons"
+        aria-hidden="true"
+      >
+        <div class="skeleton-image"></div>
+        <div class="skeleton-copy">
+          <div class="skeleton-line skeleton-line--short"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #loadedCharacters>
+      <ng-container *ngIf="filteredCharacters$ | async as characters">
+        <app-characters-card
+          *ngFor="let character of characters"
+          [character]="character"
+          (viewDetails)="openDetails($event)"
+        ></app-characters-card>
+        <div class="empty-state" *ngIf="characters.length === 0">
+          <h2>No specimens found</h2>
+          <p>Try a different name or status filter.</p>
+        </div>
+      </ng-container>
+    </ng-template>
+  </section>
+
+  <div class="connection-state">
+    <span class="connection-state__dot"></span>
+    <span>GraphQL observable connected</span>
+  </div>
+
+  <button
+    class="scroll-top"
+    *ngIf="showButton"
+    (click)="onScrollTop()"
+    aria-label="Scroll to top"
+  >
+    ↑
+  </button>
+</main>
+
+<app-search
+  [isOpen]="isSearchOpen"
+  (closed)="isSearchOpen = false"
+  (selected)="openDetails($event)"
+></app-search>
+<app-character-detail-modal
+  *ngIf="selectedCharacter as character"
+  [character]="character"
+  (close)="closeDetails()"
+></app-character-detail-modal>

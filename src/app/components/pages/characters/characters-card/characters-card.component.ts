@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { Character } from '@app/shared/interfaces/data.interface';
 import { LocalStorageService } from '@app/shared/services/localStorage.service';
@@ -11,10 +17,9 @@ import { LocalStorageService } from '@app/shared/services/localStorage.service';
 })
 export class CharactersCardComponent {
   @Input() character: Character;
+  @Output() viewDetails = new EventEmitter<Character>();
 
   constructor(private localStorage: LocalStorageService) {}
-  isFavorite: boolean;
-
   getIcon(): string {
     return this.character.isFavorite ? 'heart-solid.svg' : 'heart.svg';
   }

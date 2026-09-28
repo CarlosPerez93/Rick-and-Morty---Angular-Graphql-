@@ -1,0 +1,78 @@
+<main class="episode-archive">
+  <header class="episode-archive__header">
+    <div>
+      <span class="episode-archive__eyebrow">Multiverse Explorer / 02</span>
+      <h1>Episode archive</h1>
+      <p>
+        Every transmission, anomaly, and questionable adventure — filed by
+        season.
+      </p>
+    </div>
+    <div class="episode-archive__summary">
+      <span class="episode-archive__summary-value">{{ episodeCount$ | async }}</span>
+      <span class="episode-archive__summary-label">episodes indexed</span>
+    </div>
+  </header>
+
+  <section class="episode-toolbar" aria-label="Episode search and filters">
+    <label class="episode-search">
+      <input
+        type="search"
+        placeholder="Search episodes or codes..."
+        aria-label="Search episodes by title or code"
+        (input)="onSearchInput($event)"
+      />
+    </label>
+
+    <div class="season-filters" role="group" aria-label="Filter by season">
+      <button
+        *ngFor="let season of seasonFilters$ | async"
+        type="button"
+        class="season-filter"
+        [class.is-active]="(selectedSeason$ | async) === season"
+        (click)="setSeasonFilter(season)"
+      >
+        {{ season === "All" ? "All seasons" : season }}
+      </button>
+    </div>
+  </section>
+
+  <ng-container *ngIf="seasons$ | async as seasons">
+    <section
+      class="season-section"
+      *ngFor="let season of seasons"
+      [attr.aria-label]="season.season + ' episodes'"
+    >
+      <header class="season-section__header">
+        <div class="season-section__title">
+          <span class="season-section__marker"></span>
+          <h2>{{ season.season }}</h2>
+        </div>
+        <span class="season-section__count">
+          {{ season.episodes.length }}
+          {{ season.episodes.length === 1 ? "episode" : "episodes" }}
+        </span>
+      </header>
+
+      <div class="episode-grid">
+        <article class="episode-card" *ngFor="let episode of season.episodes">
+          <div class="episode-card__topline">
+            <span class="episode-card__code">{{ episode.episode }}</span>
+            <span class="episode-card__index">#{{ episode.id }}</span>
+          </div>
+          <h3>{{ episode.name }}</h3>
+          <div class="episode-card__footer">
+            <span>Transmission archived</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="episode-empty" *ngIf="seasons.length === 0">
+      <span class="episode-empty__icon" aria-hidden="true">⌕</span>
+      <h2>No episodes found</h2>
+      <p>Try a different title, episode code, or season.</p>
+    </div>
+  </ng-container>
+
+</main>

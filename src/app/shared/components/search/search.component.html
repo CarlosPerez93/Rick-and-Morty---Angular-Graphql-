@@ -1,0 +1,61 @@
+<div class="palette-backdrop" *ngIf="isOpen" (click)="close()">
+  <section
+    class="search-palette"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Search characters"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="search-palette__input-row">
+      <span class="search-palette__icon" aria-hidden="true">⌕</span>
+      <input
+        #searchInput
+        type="search"
+        placeholder="Search the multiverse..."
+        [value]="searchTerm$.value"
+        (input)="onSearchInput($event)"
+        aria-label="Search characters by name"
+        autofocus
+      />
+      <button
+        type="button"
+        class="search-palette__close"
+        (click)="close()"
+        aria-label="Close search"
+      >
+        Esc
+      </button>
+    </div>
+    <p class="search-palette__hint" *ngIf="!searchTerm$.value">
+      Results update as you type
+    </p>
+    <div class="search-palette__results" *ngIf="searchTerm$.value">
+      <ng-container *ngIf="loading$ | async; else searchResults">
+        <p class="search-palette__message">Searching the multiverse...</p>
+      </ng-container>
+      <ng-template #searchResults>
+        <ng-container *ngIf="characters$ | async as characters">
+          <button
+            class="search-result"
+            type="button"
+            *ngFor="let character of characters"
+            (click)="selectCharacter(character)"
+          >
+            <img [src]="character.image" [alt]="" />
+            <span class="search-result__name">{{ character.name }}</span>
+            <span class="search-result__meta"
+              >{{ character.species }} / {{ character.status }}</span
+            >
+          </button>
+          <p class="search-palette__message" *ngIf="characters.length === 0">
+            No matching characters.
+          </p>
+        </ng-container>
+      </ng-template>
+    </div>
+    <div class="search-palette__footer">
+      <button type="button" (click)="onClear()">Clear search</button>
+      <span>GRAPHQL CHARACTER SEARCH</span>
+    </div>
+  </section>
+</div>

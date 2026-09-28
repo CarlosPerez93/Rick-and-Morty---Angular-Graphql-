@@ -1,41 +1,64 @@
-import { FormControl } from '@angular/forms';
-import { Component, OnDestroy } from '@angular/core';
 import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import {
+  BehaviorSubject,
   debounceTime,
   distinctUntilChanged,
-  filter,
-  map,
+  skip,
   Subject,
   takeUntil,
   tap,
 } from 'rxjs';
 
+import { Character } from '@app/shared/interfaces/data.interface';
 import { DataService } from '@app/shared/services/data.service';
 
 @Component({
   selector: 'app-search',
-  template: `
-    <section class="search__container">
-      <div class="search__name">
-        <label for="searchName">Search by name</label>
-        <input
-          type="text"
-          class="search__input"
-          placeholder="search by name..."
-          [formControl]="search"
-        />
-        <button (click)="onClear()">Clear</button>
-      </div>
-    </section>
-  `,
+  templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent implements OnDestroy {
-  search = new FormControl('');
+export class SearchComponent implements OnChanges, OnDestroy {
+  @Input() isOpen = false;
+  @Output() closed = new EventEmitter<void>();
+  @Output() selected = new EventEmitter<Character>();
+  @ViewChild('searchInput') searchInput?: ElementRef<HTMLInputElement>;
+  readonly searchTerm$ = new BehaviorSubject<string>('');
+  readonly characters$ = this.dataSvc.characters$;
+  readonly loading$ = this.dataSvc.loading$;
   private destroy$ = new Subject<unknown>();
 
   constructor(private dataSvc: DataService) {
-    this.onSearch();
+    this.searchTerm$
+      .pipe(
+        skip(1),
+        debounceTime(250),
+        distinctUntilChanged(),
+        tap((search) => {
+          if (search) {
+            this.dataSvc.filterDAta(search);
+          } else {
+            this.dataSvc.getDataApi();
+          }
+        }),
+        takeUntil(this.destroy$),
+      )
+      .subscribe();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isOpen']?.currentValue) {
+      setTimeout(() => this.searchInput?.nativeElement.focus());
+    }
   }
 
   ngOnDestroy(): void {
@@ -43,20 +66,22 @@ export class SearchComponent implements OnDestroy {
     this.destroy$.complete();
   }
 
-  private onSearch(): void {
-    this.search.valueChanges
-      .pipe(
-        map((search) => search?.toLowerCase().trim(), debounceTime(300)),
-        distinctUntilChanged(),
-        filter((search) => search !== '' && search?.length! > 2),
-        tap((search) => this.dataSvc.filterDAta(search!)),
-        takeUntil(this.destroy$),
-      )
-      .subscribe();
+  onSearchInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.searchTerm$.next(input.value.trim());
   }
 
   onClear(): void {
-    this.search.reset();
-    this.dataSvc.getDataApi();
+    this.searchTerm$.next('');
+    this.close();
+  }
+
+  selectCharacter(character: Character): void {
+    this.selected.emit(character);
+    this.close();
+  }
+
+  close(): void {
+    this.closed.emit();
   }
 }

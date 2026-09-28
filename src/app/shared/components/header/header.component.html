@@ -1,26 +1,21 @@
-<header>
-  <nav class="menu" role="navigation">
-    <div class="menu__toggle">
-      <input type="checkbox" id="checkmenu" />
-      <span></span>
-      <span></span>
-      <span></span>
-      <ul class="navbar">
-        <li>
-          <a [routerLink]="['/home']" class="link-item">Home</a>
-        </li>
-        <li>
-          <a [routerLink]="['/characters-list']" class="link-item"
-            >Characters</a
-          >
-        </li>
-        <li>
-          <a [routerLink]="['/episodes']" class="link-item">Episodes</a>
-        </li>
-        <li>
-          <a [routerLink]="['/about']" class="link-item">About</a>
-        </li>
-      </ul>
-    </div>
+<header class="site-header">
+  <a class="site-header__brand" [routerLink]="['/characters-list']">
+    <span class="site-header__mark">R&amp;M</span>
+    <span>Multiverse Explorer</span>
+  </a>
+  <nav class="site-header__nav" aria-label="Main navigation">
+    <a [routerLink]="['/characters-list']" routerLinkActive="is-active"
+      >Characters</a
+    >
+    <a
+      [routerLink]="['/home']"
+      routerLinkActive="is-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      aria-label="Open favorite characters"
+      >Favorites</a
+    >
+    <a [routerLink]="['/episodes']" routerLinkActive="is-active">Episodes</a>
+    <a [routerLink]="['/about']" routerLinkActive="is-active">About</a>
   </nav>
+  <span class="site-header__status"><span></span> Data feed online</span>
 </header>

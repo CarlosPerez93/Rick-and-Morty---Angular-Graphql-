@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg-primary: #09090b;
+  --bg-card: #18181b;
+  --bg-card-hover: #1f1f23;
+  --border-color: #27272a;
+  --border-focus: #3f3f46;
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  --color-alive: #22c55e;
+  --color-dead: #ef4444;
+  --color-unknown: #71717a;
+  --portal-neon: #10b981;
+}
 
 *,
 *:before,
@@ -10,9 +25,16 @@
 }
 
 html {
-  font-family: "RocknRoll One", sans-serif;
-  background-color: #5e2c99;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
 }
 
 ul {
@@ -24,18 +46,9 @@ a {
 }
 
 .container {
-  width: 90%;
-  height: 500px;
+  width: min(1440px, 94%);
+  height: auto;
   margin: 0 auto;
-}
-
-section {
-  height: 100vh;
-}
-
-/* HEADER */
-header {
-  width: 25%;
 }
 
 /*** SHARED ***/
