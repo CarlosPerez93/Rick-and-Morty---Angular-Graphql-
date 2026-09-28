@@ -20,7 +20,7 @@ export class CharactersCardComponent {
   }
 
   toggleFavorite(): void {
-    const isFavorite = this.isFavorite;
+    const isFavorite = this.character.isFavorite;
     this.getIcon();
     this.character.isFavorite = !isFavorite;
     this.localStorage.addOrRemoveFavorite(this.character);
