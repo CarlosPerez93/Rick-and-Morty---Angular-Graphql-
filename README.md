@@ -1,82 +1,99 @@
-# 🛸 Rick and Morty - Angular + GraphQL
+# 🛸 Rick and Morty · Multiverse Explorer
 
-Aplicación Angular para explorar personajes y episodios de Rick and Morty a través de la API GraphQL oficial. Incluye búsqueda y filtros reactivos, paneles laterales para detalles y favoritos, además de configuración para renderizado del lado del servidor (SSR) y prerenderizado. 🚀
+Explora personajes y episodios del multiverso en una aplicación Angular conectada a la [API GraphQL de Rick and Morty](https://rickandmortyapi.com/graphql).
 
-## ✨ Funcionalidades
+<p>
+  <img alt="Angular 16" src="https://img.shields.io/badge/Angular-16-DD0031?logo=angular&logoColor=white">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.1-3178C6?logo=typescript&logoColor=white">
+  <img alt="GraphQL" src="https://img.shields.io/badge/API-GraphQL-E10098?logo=graphql&logoColor=white">
+  <img alt="Apollo Angular" src="https://img.shields.io/badge/Apollo_Angular-311C87?logo=apollographql&logoColor=white">
+</p>
 
-- 🔎 Directorio de personajes con búsqueda por nombre, filtros por estado y carga de páginas adicionales al desplazarse.
-- 🧩 Tarjetas reutilizables con imagen, estado, especie, género y origen.
-- ⌨️ Paleta de búsqueda con atajo `Ctrl + K` / `Cmd + K` y resultados conectados a GraphQL.
-- 🪟 Drawer de detalles de personaje con información de origen y ubicación.
-- ⭐ Favoritos persistidos en `localStorage`, con una vista drawer accesible desde la navegación.
-- 📺 Archivo de episodios agrupado por temporada, con búsqueda por título/código y filtros reactivos.
-- 📱 Interfaz minimalista adaptable a pantallas móviles.
-- 🧭 Navegación con módulos cargados de forma diferida y página para rutas no encontradas.
-- ⚡ Configuración de SSR y prerenderizado para la aplicación.
+## ✨ Qué puedes hacer
 
-## 🛠️ Tecnologías
+- 🧬 Explorar el directorio de personajes, buscar por nombre, filtrar por estado y cargar más resultados al desplazarte.
+- 🪪 Consultar una ficha lateral con imagen, especie, género, origen y ubicación de cada personaje.
+- ⌨️ Abrir la búsqueda con `Ctrl + K` o `Cmd + K`; los resultados se actualizan mientras escribes.
+- ⭐ Guardar favoritos en `localStorage` y consultarlos desde su panel lateral.
+- 📺 Explorar episodios agrupados por temporada, con búsqueda por título o código.
+- 🧭 Navegar entre personajes, favoritos, episodios e información; las vistas se cargan bajo demanda.
+- 📱 Usar una interfaz adaptable a pantallas pequeñas.
+- 🌐 Ejecutar opciones de renderizado del lado del servidor (SSR) y prerenderizado.
 
-- 🅰️ Angular 16 y TypeScript
-- ◈ Apollo Angular y GraphQL para consultar los personajes y episodios.
-- 🔄 RxJS para estado observable, búsqueda reactiva y filtros.
-- 🎨 HTML5 y CSS3 nativo para componentes, animaciones y diseño responsive.
-- 💾 `localStorage` para persistir favoritos en el navegador.
-- 🌐 Express y Angular Universal para SSR
+## 🧰 Tecnologías
 
-## 🤖 Diseño y herramientas de IA
-
-- 🧵 **Stitch** se utilizó para generar el concepto visual minimalista “Rick and Morty Redesign” y consultar sus artefactos de diseño mediante el MCP de Stitch disponible en VS Code.
-- 🤝 **GitHub Copilot en VS Code** se utilizó como asistente de desarrollo para adaptar el diseño al proyecto Angular, refactorizar las vistas e integrar los controles con los observables y consultas existentes.
-- 🧩 Los artefactos HTML/CSS de diseño se mapearon a templates y hojas de estilo locales de Angular; los tokens visuales compartidos se incorporaron a los estilos globales.
-- 🛠️ Las herramientas de IA se usaron durante el diseño y el desarrollo. No son dependencias de ejecución y la aplicación no necesita servicios de IA para funcionar.
+| Tecnología                     | Uso                                      |
+| ------------------------------ | ---------------------------------------- |
+| 🅰️ Angular 16 y TypeScript     | Aplicación y componentes                 |
+| 🚀 Apollo Angular y GraphQL    | Consultas a la API oficial               |
+| 🔄 RxJS                        | Datos reactivos, búsqueda y filtros      |
+| 🎨 HTML y CSS                  | Interfaz, diseño adaptable y animaciones |
+| 💾 `localStorage`              | Persistencia de personajes favoritos     |
+| 🌐 Express y Angular Universal | Servidor y renderizado SSR               |
 
 ## 📋 Requisitos
 
-- Node.js y npm compatibles con Angular 16.
+- Node.js compatible con Angular 16.
+- npm.
 
-## 🚀 Instalación y desarrollo
+## 🚀 Inicio rápido
 
 ```bash
 npm install
 npm start
 ```
 
-La aplicación queda disponible en `http://localhost:4200`.
+Abre [http://localhost:4200](http://localhost:4200) para usar la aplicación.
 
-## ⚙️ Comandos
+## 🗺️ Rutas
 
-| Comando             | Descripción                                           |
-| ------------------- | ----------------------------------------------------- |
-| `npm start`         | Inicia el servidor de desarrollo.                     |
-| `npm run build`     | Compila la aplicación para el navegador.              |
-| `npm test`          | Ejecuta las pruebas unitarias con Karma y Jasmine.    |
-| `npm run build:ssr` | Compila la aplicación de navegador y el servidor SSR. |
-| `npm run serve:ssr` | Inicia el servidor SSR compilado.                     |
-| `npm run prerender` | Genera HTML estático para la ruta configurada.        |
+| Ruta                         | Vista                    |
+| ---------------------------- | ------------------------ |
+| `/characters-list`           | Directorio de personajes |
+| `/home`                      | Panel de favoritos       |
+| `/episodes`                  | Archivo de episodios     |
+| `/about`                     | Información del proyecto |
+| Cualquier ruta no reconocida | Página no encontrada     |
 
-## 🗺️ Estado y próximos pasos
+La ruta raíz (`/`) redirige al directorio de personajes.
 
-- [x] 🏗️ Configuración inicial de Angular y estructura modular.
-- [x] 🔗 Integración con la API GraphQL mediante Apollo.
-- [x] 🔎 Búsqueda y filtros de personajes con resultados conectados a GraphQL.
-- [x] ⌨️ Paleta de búsqueda accesible con `Ctrl + K` / `Cmd + K`.
-- [x] 🪟 Drawer de detalles de personaje y drawer de favoritos.
-- [x] ⭐ Favoritos reactivos persistidos localmente.
-- [x] 📺 Archivo de episodios con filtros por temporada y búsqueda.
-- [x] 🎨 Rediseño minimalista responsive con CSS nativo y animaciones.
-- [x] 🌐 Configuración de compilación SSR y prerenderizado.
-- [x] ✅ Build de producción con `npm run build`.
-- [x] 🧪 Pruebas enfocadas para la vista de favoritos y navegación.
-- [ ] 🧪 Ampliar la cobertura de pruebas para consultas, paginación y estados de error.
-- [ ] ⚠️ Revisar y unificar el manejo de errores de GraphQL y `localStorage`.
+## ⚙️ Comandos disponibles
 
-## 📂 Estructura
+| Comando             | Descripción                                                    |
+| ------------------- | -------------------------------------------------------------- |
+| `npm start`         | Inicia el servidor de desarrollo de Angular.                   |
+| `npm run build`     | Compila la aplicación para el navegador.                       |
+| `npm run watch`     | Compila en modo desarrollo y observa cambios.                  |
+| `npm test`          | Ejecuta las pruebas con Karma y Jasmine.                       |
+| `npm run dev:ssr`   | Inicia el servidor de desarrollo SSR.                          |
+| `npm run build:ssr` | Compila la aplicación de navegador y el servidor SSR.          |
+| `npm run serve:ssr` | Sirve la compilación SSR; ejecuta primero `npm run build:ssr`. |
+| `npm run prerender` | Prerenderiza las rutas configuradas.                           |
 
-- `src/app/components/pages/`: vistas de personajes, episodios, favoritos, información y rutas no encontradas.
-- `src/app/components/pages/characters/`: tarjetas, listado, ruta de detalle y drawer de detalles.
-- `src/app/components/pages/home/`: drawer de personajes favoritos.
-- `src/app/components/pages/episodes/`: archivo y filtros de episodios.
-- `src/app/shared/`: componentes compartidos, servicios, interfaces y utilidades.
-- `src/app/graphql.module.ts`: configuración del cliente Apollo.
-- `src/styles.css`: tokens de diseño y estilos globales.
-- `server.ts` y `src/main.server.ts`: entrada del servidor SSR.
+## 🏗️ Estructura del proyecto
+
+```text
+src/
+├── app/
+│   ├── components/pages/       # Personajes, episodios, favoritos, About y 404
+│   ├── shared/                 # Componentes, servicios, interfaces y utilidades
+│   ├── app-routing.module.ts   # Rutas y carga diferida
+│   └── graphql.module.ts       # Configuración de Apollo
+├── assets/imgs/                # Recursos gráficos
+├── styles.css                  # Estilos y variables globales
+├── main.server.ts              # Entrada de Angular para SSR
+└── main.ts                     # Entrada del navegador
+server.ts                       # Servidor Express para SSR
+netlify.toml                    # Configuración de despliegue en Netlify
+```
+
+## 🎨 Diseño y herramientas
+
+- 🧵 **Stitch** se utilizó para explorar el concepto visual “Rick and Morty Redesign” y consultar sus artefactos de diseño desde VS Code.
+- 🤝 **GitHub Copilot en VS Code** apoyó la adaptación del diseño a Angular y la integración de vistas y controles con los datos reactivos.
+- 🧩 Los estilos y componentes del diseño se adaptaron a las plantillas y hojas CSS del proyecto.
+- 🛠️ Estas herramientas se usan durante el desarrollo; no son dependencias de ejecución y la aplicación no necesita servicios de IA para funcionar.
+
+---
+
+<p align="center">Hecho para explorar el multiverso, un episodio a la vez. 🌌</p>
