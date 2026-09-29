@@ -1,0 +1,24 @@
+<header class="explorer__header">
+  <div>
+    <span class="eyebrow">{{ subtitle }}</span>
+    <h1 class="explorer__title">{{ title }}</h1>
+    <p class="explorer__description">
+      {{ description }}
+    </p>
+  </div>
+
+  <button
+    *ngIf="showButton"
+    class="search-trigger"
+    type="button"
+    (click)="searchRequested.emit()"
+  >
+    <span>Search characters</span>
+    <kbd>⌘ K / Ctrl K</kbd>
+  </button>
+
+  <div class="summary" *ngIf="showepisodes">
+    <span class="summary-value">{{ episodesCount }}</span>
+    <span class="summary-label">{{ episodesindexed }}</span>
+  </div>
+</header>

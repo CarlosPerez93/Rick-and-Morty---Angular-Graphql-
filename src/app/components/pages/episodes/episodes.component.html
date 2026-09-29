@@ -1,20 +1,13 @@
 <main class="episode-archive">
-  <header class="episode-archive__header">
-    <div class="episode-archive__container">
-      <span class="episode-archive__eyebrow">Multiverse Explorer / 02</span>
-      <h1>Episode archive</h1>
-      <p>
-        Every transmission, anomaly, and questionable adventure — filed by
-        season.
-      </p>
-    </div>
-    <div class="episode-archive__summary">
-      <span class="episode-archive__summary-value">{{
-        episodeCount$ | async
-      }}</span>
-      <span class="episode-archive__summary-label">episodes indexed</span>
-    </div>
-  </header>
+  <app-custom-header
+    [showepisodes]="true"
+    subtitle="Multiverse Explorer / 02"
+    title="Episode archive"
+    description="Every transmission, anomaly, and questionable adventure — filed by
+        season."
+    [episodesCount]="(episodeCount$ | async) ?? 0"
+    episodesindexed="episodes indexed "
+  />
 
   <section class="episode-toolbar" aria-label="Episode search and filters">
     <label class="episode-search">

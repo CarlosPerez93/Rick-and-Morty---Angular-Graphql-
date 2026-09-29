@@ -38,20 +38,6 @@
   line-height: 1.7;
 }
 
-.episode-archive__summary {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 5px;
-}
-
-.episode-archive__summary-value {
-  color: var(--portal-neon);
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1;
-}
-
 .episode-toolbar {
   display: flex;
   justify-content: space-between;

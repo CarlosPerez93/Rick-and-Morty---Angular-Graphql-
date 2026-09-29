@@ -1,18 +1,13 @@
 <main class="explorer" infinite-scroll (scrolled)="onScrollDown()">
-  <header class="explorer__header">
-    <div>
-      <span class="eyebrow">Multiverse Explorer / 01</span>
-      <h1 class="explorer__title">Character directory</h1>
-      <p class="explorer__description">
-        Explore the known multiverse. Search specimens and narrow the list by
-        current status.
-      </p>
-    </div>
-    <button class="search-trigger" type="button" (click)="isSearchOpen = true">
-      <span>Search characters</span>
-      <kbd>⌘ K / Ctrl K</kbd>
-    </button>
-  </header>
+  <app-custom-header
+    [showButton]="true"
+    title="Character directory"
+    subtitle="Multiverse Explorer / 01"
+    description=" Explore the known multiverse. Search specimens and narrow the list by
+        current status."
+    classCustom="explorer__header"
+    (searchRequested)="isSearchOpen = true"
+  ></app-custom-header>
 
   <section class="toolbar" aria-label="Character filters">
     <div class="filters" role="group" aria-label="Filter by status">

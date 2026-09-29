@@ -30,13 +30,7 @@ const routes: Routes = [
         (m) => m.CharactersListModule,
       ),
   },
-  {
-    path: 'characters-details/:id',
-    loadChildren: () =>
-      import('./components/pages/characters/characters-details/characters-details.module').then(
-        (m) => m.CharactersDetailsModule,
-      ),
-  },
+
   {
     path: '**',
     loadChildren: () =>
@@ -47,9 +41,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
-})],
+  imports: [
+    RouterModule.forRoot(routes, {
+      initialNavigation: 'enabledBlocking',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
