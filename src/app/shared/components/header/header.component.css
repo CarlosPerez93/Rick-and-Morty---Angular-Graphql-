@@ -7,6 +7,11 @@
   padding: 0 max(3%, calc((100% - 1440px) / 2));
   border-bottom: 1px solid var(--border-color);
   background: var(--bg-primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .site-header__brand {
