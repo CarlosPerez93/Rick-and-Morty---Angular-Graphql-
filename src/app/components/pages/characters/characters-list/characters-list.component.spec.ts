@@ -71,6 +71,10 @@ describe('CharactersListComponent', () => {
     ]);
   });
 
+  it('tracks character cards by character id', () => {
+    expect(component.trackByCharacterId(0, characters[0])).toBe(1);
+  });
+
   it('opens the search palette with Ctrl+K', () => {
     const preventDefault = jasmine.createSpy('preventDefault');
     component.onWindowKeydown({

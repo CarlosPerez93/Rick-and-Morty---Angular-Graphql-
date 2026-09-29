@@ -74,6 +74,10 @@ export class CharactersListComponent implements OnInit {
     this.filterStatus$.next(status);
   }
 
+  trackByCharacterId(_index: number, character: Character): number {
+    return character.id;
+  }
+
   openDetails(character: Character): void {
     this.selectedCharacter = character;
   }

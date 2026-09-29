@@ -54,7 +54,7 @@
     <ng-template #loadedCharacters>
       <ng-container *ngIf="filteredCharacters$ | async as characters">
         <app-characters-card
-          *ngFor="let character of characters"
+          *ngFor="let character of characters; trackBy: trackByCharacterId"
           [character]="character"
           (viewDetails)="openDetails($event)"
         ></app-characters-card>
