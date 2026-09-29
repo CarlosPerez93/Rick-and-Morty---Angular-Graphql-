@@ -77,11 +77,16 @@
   box-shadow: 0 0 8px rgb(16 185 129 / 55%);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .site-header {
     flex-wrap: wrap;
     gap: 0 16px;
     padding: 10px 4%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
   }
 
   .site-header__nav {
