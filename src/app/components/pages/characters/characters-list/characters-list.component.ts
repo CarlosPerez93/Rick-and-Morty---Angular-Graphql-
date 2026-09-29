@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, Inject } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest, map } from 'rxjs';
 
 import { Character } from '@app/shared/interfaces/data.interface';
@@ -10,7 +10,7 @@ import { DataService } from '@shared/services/data.service';
   templateUrl: './characters-list.component.html',
   styleUrls: ['./characters-list.component.css'],
 })
-export class CharactersListComponent {
+export class CharactersListComponent implements OnInit {
   readonly loading$ = this.dataService.loading$;
   readonly filterStatus$ = new BehaviorSubject<string>('All');
   readonly filteredCharacters$ = combineLatest([
@@ -36,6 +36,10 @@ export class CharactersListComponent {
     @Inject(DOCUMENT) private document: Document,
     private dataService: DataService,
   ) {}
+
+  ngOnInit(): void {
+    this.dataService.getCharacters();
+  }
 
   @HostListener('window:keydown', ['$event'])
   onWindowKeydown(event: KeyboardEvent): void {

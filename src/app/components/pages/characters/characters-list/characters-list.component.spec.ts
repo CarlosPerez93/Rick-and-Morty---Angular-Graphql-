@@ -38,6 +38,7 @@ describe('CharactersListComponent', () => {
           useValue: {
             characters$: of(characters),
             loading$: of(false),
+            getCharacters: jasmine.createSpy('getCharacters'),
             getCharactersByPage: jasmine.createSpy('getCharactersByPage'),
           },
         },

@@ -11,9 +11,19 @@ import {
   withLatestFrom,
 } from 'rxjs';
 
-import { QUERY, QUERY_BY_PAGE, QUERY_BY_NAME } from '../utils/querys.util';
+import {
+  QUERY_CHARACTERS,
+  QUERY_EPISODES,
+  QUERY_BY_PAGE,
+  QUERY_BY_NAME,
+} from '../utils/querys.util';
 import { LocalStorageService } from './localStorage.service';
-import { Character, DataResponse, Episode } from '../interfaces/data.interface';
+import {
+  Character,
+  CharactersResponse,
+  EpisodesResponse,
+  Episode,
+} from '../interfaces/data.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -30,9 +40,7 @@ export class DataService {
   constructor(
     private apollo: Apollo,
     private localStorage: LocalStorageService,
-  ) {
-    this.getDataApi();
-  }
+  ) {}
 
   getCharactersByPage(pageNum: number): any {
     this.loadingSubject.next(true);
@@ -50,21 +58,31 @@ export class DataService {
       .subscribe();
   }
 
-  getDataApi(): void {
+  getCharacters(): void {
     this.loadingSubject.next(true);
     this.apollo
-      .watchQuery<DataResponse>({
-        query: QUERY,
+      .watchQuery<CharactersResponse>({
+        query: QUERY_CHARACTERS,
       })
       .valueChanges.pipe(
         take(1),
         tap(({ data }) => {
-          const { characters, episodes } = data;
+          const { characters } = data;
           this.charactersSubject.next(characters.results);
-          this.episodesSubject.next(episodes.results);
-
           this.parseCharacteData(characters.results);
         }),
+        finalize(() => this.loadingSubject.next(false)),
+      )
+      .subscribe();
+  }
+
+  getEpisodes(): void {
+    this.loadingSubject.next(true);
+    this.apollo
+      .watchQuery<EpisodesResponse>({ query: QUERY_EPISODES })
+      .valueChanges.pipe(
+        take(1),
+        tap(({ data }) => this.episodesSubject.next(data.episodes.results)),
         finalize(() => this.loadingSubject.next(false)),
       )
       .subscribe();

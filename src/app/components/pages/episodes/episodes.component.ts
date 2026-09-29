@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest, map } from 'rxjs';
 
 import { DataService } from '@app/shared/services/data.service';
@@ -9,7 +9,7 @@ import { Episode } from '@app/shared/interfaces/data.interface';
   templateUrl: './episodes.component.html',
   styleUrls: ['./episodes.component.css'],
 })
-export class EpisodesComponent {
+export class EpisodesComponent implements OnInit {
   readonly searchTerm$ = new BehaviorSubject<string>('');
   readonly selectedSeason$ = new BehaviorSubject<string>('All');
   readonly seasonFilters$ = this.dataService.episodes$.pipe(
@@ -61,6 +61,10 @@ export class EpisodesComponent {
   );
 
   constructor(private dataService: DataService) {}
+
+  ngOnInit(): void {
+    this.dataService.getEpisodes();
+  }
 
   onSearchInput(event: Event): void {
     const target = event.target;

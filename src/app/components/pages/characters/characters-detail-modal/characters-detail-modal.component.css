@@ -10,7 +10,8 @@
 
 .detail-drawer {
   position: relative;
-  width: min(440px, 100%);
+  margin-top: 60px;
+  width: min(368px, 100%);
   height: 100%;
   padding: 26px;
   overflow-y: auto;

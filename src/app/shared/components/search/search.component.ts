@@ -47,7 +47,7 @@ export class SearchComponent implements OnChanges, OnDestroy {
           if (search) {
             this.dataSvc.filterDAta(search);
           } else {
-            this.dataSvc.getDataApi();
+            this.dataSvc.getCharacters();
           }
         }),
         takeUntil(this.destroy$),
