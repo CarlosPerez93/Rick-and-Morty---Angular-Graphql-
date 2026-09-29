@@ -31,10 +31,10 @@
   width: 100%;
   aspect-ratio: 1.2;
   object-fit: cover;
-  transition: transform 180ms ease;
+  transition: transform 350ms ease;
 }
 
-.character-card__image-button:hover .character-card__image {
+.character-card:hover .character-card__image {
   transform: scale(1.035);
 }
 
