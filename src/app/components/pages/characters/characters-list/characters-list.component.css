@@ -197,7 +197,7 @@
   }
 }
 
-@media (max-width: 760px) {
+@media screem and (max-width: 760px) {
   .explorer {
     padding-top: 30px;
   }
