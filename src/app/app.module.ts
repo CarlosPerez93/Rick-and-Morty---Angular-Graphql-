@@ -8,9 +8,9 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderModule } from './shared/components/header/header.module';
-import { SpinnerModule } from './shared/components/spinner/spinner.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpinnerInterceptor } from './shared/interceptors/spinner.interceptor';
+import { SpinnerModule } from './shared/components/spinner/spinner.module';
 
 @NgModule({
   declarations: [AppComponent],

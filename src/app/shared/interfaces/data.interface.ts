@@ -28,10 +28,7 @@ export interface ApiResponse<T> {
   results: T;
 }
 
-export interface CharactersResponse {
+export interface DataResponse {
   characters: ApiResponse<Character[]>;
-}
-
-export interface EpisodesResponse {
   episodes: ApiResponse<Episode[]>;
 }

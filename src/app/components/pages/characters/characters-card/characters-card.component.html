@@ -1,3 +1,4 @@
+<app-spinner (isLoading)="(true)"></app-spinner>
 <article class="character-card">
   <button
     class="character-card__image-button"
@@ -9,8 +10,6 @@
       class="character-card__image"
       [src]="character.image"
       [alt]="character.name"
-      loading="lazy"
-      decoding="async"
     />
   </button>
   <div class="character-card__content">

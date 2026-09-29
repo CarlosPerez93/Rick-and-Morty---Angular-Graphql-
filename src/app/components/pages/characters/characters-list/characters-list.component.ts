@@ -10,7 +10,7 @@ import { DataService } from '@shared/services/data.service';
   templateUrl: './characters-list.component.html',
   styleUrls: ['./characters-list.component.css'],
 })
-export class CharactersListComponent implements OnInit {
+export class CharactersListComponent {
   readonly loading$ = this.dataService.loading$;
   readonly filterStatus$ = new BehaviorSubject<string>('All');
   readonly filteredCharacters$ = combineLatest([
@@ -36,10 +36,6 @@ export class CharactersListComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     private dataService: DataService,
   ) {}
-
-  ngOnInit(): void {
-    this.dataService.getCharacters();
-  }
 
   @HostListener('window:keydown', ['$event'])
   onWindowKeydown(event: KeyboardEvent): void {

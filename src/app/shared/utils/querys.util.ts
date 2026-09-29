@@ -1,7 +1,14 @@
 import { gql } from 'apollo-angular';
 
-export const QUERY_CHARACTERS = gql`
+export const QUERY = gql`
   {
+    episodes {
+      results {
+        id
+        name
+        episode
+      }
+    }
     characters {
       results {
         id
@@ -18,17 +25,11 @@ export const QUERY_CHARACTERS = gql`
         image
       }
     }
-  }
-`;
-
-export const QUERY_EPISODES = gql`
-  {
-    episodes {
-      results {
-        id
-        name
-        episode
-      }
+    location(id: 1) {
+      id
+    }
+    episodesByIds(ids: [1, 2]) {
+      id
     }
   }
 `;
@@ -42,6 +43,12 @@ export const QUERY_BY_PAGE = (pageNum: number) => gql`
         status
         species
         gender
+        origin {
+          name
+        }
+        location {
+          name
+        }
         image
        }
   }
@@ -59,6 +66,12 @@ export const QUERY_BY_NAME = (name: string) => gql`
         status
         species
         gender
+        origin {
+          name
+        }
+        location {
+          name
+        }
         image
       }
     }

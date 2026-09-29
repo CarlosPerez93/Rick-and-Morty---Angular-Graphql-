@@ -9,7 +9,7 @@ import { Episode } from '@app/shared/interfaces/data.interface';
   templateUrl: './episodes.component.html',
   styleUrls: ['./episodes.component.css'],
 })
-export class EpisodesComponent implements OnInit {
+export class EpisodesComponent {
   readonly searchTerm$ = new BehaviorSubject<string>('');
   readonly selectedSeason$ = new BehaviorSubject<string>('All');
   readonly seasonFilters$ = this.dataService.episodes$.pipe(
@@ -61,10 +61,6 @@ export class EpisodesComponent implements OnInit {
   );
 
   constructor(private dataService: DataService) {}
-
-  ngOnInit(): void {
-    this.dataService.getEpisodes();
-  }
 
   onSearchInput(event: Event): void {
     const target = event.target;

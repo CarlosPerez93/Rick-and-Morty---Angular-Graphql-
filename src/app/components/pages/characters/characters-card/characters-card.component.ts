@@ -8,6 +8,7 @@ import {
 
 import { Character } from '@app/shared/interfaces/data.interface';
 import { LocalStorageService } from '@app/shared/services/localStorage.service';
+import { SpinnerService } from '@app/shared/services/spiner.service';
 
 @Component({
   selector: 'app-characters-card',
@@ -16,10 +17,15 @@ import { LocalStorageService } from '@app/shared/services/localStorage.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharactersCardComponent {
+  isLoading = this.spinerSvc.isLoading$;
+
   @Input() character: Character;
   @Output() viewDetails = new EventEmitter<Character>();
 
-  constructor(private localStorage: LocalStorageService) {}
+  constructor(
+    private localStorage: LocalStorageService,
+    private spinerSvc: SpinnerService,
+  ) {}
   getIcon(): string {
     return this.character.isFavorite ? 'heart-solid.svg' : 'heart.svg';
   }
